@@ -3,11 +3,8 @@ package ie.cm.activities;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.TextView;
 
 import ie.cm.R;
@@ -49,6 +46,16 @@ public class Home extends Base {
         goToActivity(this,Add.class,null);
     }
 
+    public void search(View v)
+    {
+        goToActivity(this,Search.class,null);
+    }
+
+    public void favourites(View v)
+    {
+        goToActivity(this,Favourites.class,null);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -68,8 +75,8 @@ public class Home extends Base {
     }
 
     public void setupCoffees(){
-        coffeeList.add(new Coffee("Standard Black", "Some Shop",2.5,1.99,false));
-        coffeeList.add(new Coffee("Regular Joe", "Joe's Place",3.5,2.99,true));
-        coffeeList.add(new Coffee("Espresso", "Ardkeen Stores",4.5,1.49,true));
+        //coffeeList.add(new Coffee("Standard Black", "Some Shop",2.5,1.99,false));
+        //coffeeList.add(new Coffee("Regular Joe", "Joe's Place",3.5,2.99,true));
+        //coffeeList.add(new Coffee("Espresso", "Ardkeen Stores",4.5,1.49,true));
     }
 }

@@ -9,11 +9,14 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.SpinnerAdapter;
 
 public class CoffeeListAdapter extends ArrayAdapter<Coffee> {
   private Context context;
   private OnClickListener deleteListener;
   public List<Coffee> coffeeList;
+
+
 
   public CoffeeListAdapter(Context context, OnClickListener deleteListener,
                            List<Coffee> coffeeList) {
@@ -22,7 +25,10 @@ public class CoffeeListAdapter extends ArrayAdapter<Coffee> {
     this.context = context;
     this.deleteListener = deleteListener;
     this.coffeeList = coffeeList;
+
+
   }
+
 
   @Override
   public View getView(int position, View convertView, ViewGroup parent) {
@@ -50,4 +56,6 @@ public class CoffeeListAdapter extends ArrayAdapter<Coffee> {
   public int getPosition(Coffee c) {
     return coffeeList.indexOf(c);
   }
+
+
 }

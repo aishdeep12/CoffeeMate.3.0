@@ -1,7 +1,10 @@
 package ie.cm.fragments;
 
+import ie.cm.R;
 import ie.cm.activities.Base;
 import ie.cm.activities.Edit;
+import ie.cm.activities.Favourites;
+import ie.cm.adapters.CoffeeFilter;
 import ie.cm.adapters.CoffeeListAdapter;
 import ie.cm.models.Coffee;
 
@@ -14,6 +17,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class CoffeeFragment  extends ListFragment implements  OnClickListener
@@ -21,6 +25,10 @@ public class CoffeeFragment  extends ListFragment implements  OnClickListener
   protected         Base                activity;
   protected static  CoffeeListAdapter 	listAdapter;
   protected         ListView 			listView;
+  public CoffeeFilter coffeeFilter;
+
+
+
 
   public CoffeeFragment() {
     // Required empty public constructor
@@ -35,6 +43,7 @@ public class CoffeeFragment  extends ListFragment implements  OnClickListener
   {
     super.onAttach(context);
     this.activity = (Base) context;
+
   }
 
   @Override
@@ -43,6 +52,15 @@ public class CoffeeFragment  extends ListFragment implements  OnClickListener
 
     listAdapter = new CoffeeListAdapter(activity, this, Base.coffeeList);
     setListAdapter (listAdapter);
+    coffeeFilter = new CoffeeFilter(Base.coffeeList,"all", listAdapter);
+    if (getActivity() instanceof Favourites) {
+      coffeeFilter.setFilter("favourites"); // Set the filter text field from
+      //'all' to 'favourites'
+      coffeeFilter.filter(null); // Filter the data, but don't use any prefix
+      //list
+
+
+    }
   }
      
   @Override
@@ -58,6 +76,7 @@ public class CoffeeFragment  extends ListFragment implements  OnClickListener
     {
       onCoffeeDelete ((Coffee) view.getTag());
     }
+
   }
 
   @Override
@@ -77,6 +96,7 @@ public class CoffeeFragment  extends ListFragment implements  OnClickListener
     AlertDialog.Builder builder = new AlertDialog.Builder(activity);
     builder.setMessage("Are you sure you want to Delete the \'Coffee\' " + stringName + "?");
     builder.setCancelable(false);
+
 
     builder.setPositiveButton("Yes", new DialogInterface.OnClickListener()
     {
@@ -98,4 +118,3 @@ public class CoffeeFragment  extends ListFragment implements  OnClickListener
   }
 }
 
-  
